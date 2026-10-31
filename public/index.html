@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A beginner-friendly demonstration portal for the Student Attendance and Grade Management System DBMS mini project.">
+  <title>Student Attendance & Grade Management System</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+
+  <main id="login-screen" class="login-page">
+    <section class="login-intro" aria-labelledby="brand-title">
+      <div class="brand-lockup">
+        <div class="brand-mark" aria-hidden="true">AG</div>
+        <div>
+          <p class="eyebrow">ACADEMIC PORTAL</p>
+          <h1 id="brand-title">Student Attendance<br>&amp; Grade Management</h1>
+        </div>
+      </div>
+      <p class="intro-copy">A simple academic portal to view attendance, assessment marks, grades and subject information.</p>
+      <div class="intro-points">
+        <div><span class="point-icon" aria-hidden="true">✓</span><span>Attendance summary and low-attendance alerts</span></div>
+        <div><span class="point-icon" aria-hidden="true">✓</span><span>Student-wise grade and subject reports</span></div>
+        <div><span class="point-icon" aria-hidden="true">✓</span><span>Built around the MySQL DBMS mini project</span></div>
+      </div>
+      <div class="intro-stats" aria-label="Sample project data">
+        <div><strong>8</strong><span>Students</span></div>
+        <div><strong>6</strong><span>Subjects</span></div>
+        <div><strong>48</strong><span>Enrollments</span></div>
+      </div>
+      <p class="student-project-note">B.Tech • AI &amp; DS • DBMS Mini Project</p>
+      <div class="team-details" aria-label="Project team members">
+        <p class="team-label">PROJECT TEAM</p>
+        <p><strong>SRIDHANUSH KANDAKATLA</strong> · 25STUCHH010713<br>
+        <strong>SOUMYANATH K</strong> · 25STUCHH010621<br>
+        <strong>SANDEEP</strong> · 25STUCHH010711</p>
+      </div>
+    </section>
+
+    <section class="login-panel" aria-labelledby="login-heading">
+      <div class="login-card">
+        <div class="small-brand-mark" aria-hidden="true">AG</div>
+        <p class="eyebrow blue-text">WELCOME BACK</p>
+        <h2 id="login-heading">Sign in to your portal</h2>
+        <p class="muted">Sign in to load records from your MySQL database.</p>
+        <form id="login-form" novalidate>
+          <div class="form-field">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required placeholder="Enter username">
+          </div>
+          <div class="form-field">
+            <label for="password">Password</label>
+            <div class="password-wrap">
+              <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="Enter password">
+              <button class="show-password" id="toggle-password" type="button" aria-label="Show password" aria-pressed="false">Show</button>
+            </div>
+          </div>
+          <p id="login-error" class="form-message" role="alert" aria-live="polite"></p>
+          <button type="submit" class="primary-button full-width">Sign in <span aria-hidden="true">→</span></button>
+        </form>
+        <div class="demo-accounts">
+          <h3>Project demonstration accounts</h3>
+          <p><strong>Admin</strong> <code>admin</code> / <code>admin123</code></p>
+          <p><strong>Faculty</strong> <code>faculty</code> / <code>faculty123</code></p>
+          <p><strong>Student</strong> <code>student</code> / <code>student123</code></p>
+          <button type="button" class="text-button" id="fill-student">Fill student demo details</button>
+        </div>
+        <p class="demo-warning"><strong>Student project:</strong> login is checked by the Express backend and academic records are read from MySQL. Do not use real or reused passwords, and do not publish the demo credentials as a public production login.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="portal" class="portal hidden">
+    <aside class="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <div class="brand-mark small" aria-hidden="true">AG</div>
+        <div><strong>Academic Portal</strong><span>Attendance &amp; Grades</span></div>
+      </div>
+      <nav id="main-nav" class="main-nav" aria-label="Portal pages">
+        <button type="button" class="nav-link active" data-page="overview"><span aria-hidden="true">▦</span> Overview</button>
+        <button type="button" class="nav-link" data-page="students" data-admin-only="true"><span aria-hidden="true">♙</span> Students</button>
+        <button type="button" class="nav-link" data-page="attendance"><span aria-hidden="true">◷</span> Attendance</button>
+        <button type="button" class="nav-link" data-page="grades"><span aria-hidden="true">▤</span> Grades</button>
+        <button type="button" class="nav-link" data-page="subjects"><span aria-hidden="true">▧</span> Subjects</button>
+        <button type="button" class="nav-link" data-page="erd"><span aria-hidden="true">◇</span> ER Diagram</button>
+        <button type="button" class="nav-link" data-page="reports"><span aria-hidden="true">⇩</span> Reports / Export</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="sidebar-note"><span class="status-dot"></span><div><strong>Demo mode</strong><span>Sample project data</span></div></div>
+        <button id="logout-button" type="button" class="logout-button"><span aria-hidden="true">↪</span> Sign out</button>
+      </div>
+    </aside>
+
+    <div class="main-column">
+      <header class="topbar">
+        <div class="mobile-brand"><div class="brand-mark tiny" aria-hidden="true">AG</div><strong>Academic Portal</strong></div>
+        <div class="breadcrumb"><span>Portal</span><span aria-hidden="true">/</span><strong id="topbar-page">Overview</strong></div>
+        <div class="user-summary"><div class="avatar" id="user-avatar" aria-hidden="true">A</div><div><strong id="current-user-name">Admin</strong><span id="current-user-role">Administrator</span></div><span class="demo-pill">DEMO</span></div>
+      </header>
+      <main id="main-content" class="page-content" tabindex="-1">
+        <div id="page-view"></div>
+        <footer class="page-footer"><span>Student Attendance &amp; Grade Management System</span><span>DBMS Mini Project • MySQL-based design</span></footer>
+      </main>
+    </div>
+  </div>
+
+  <noscript><p class="noscript-message">Please enable JavaScript to use this local demo portal.</p></noscript>
+</body>
+</html>

@@ -199,7 +199,9 @@ tbody tr:hover td { background: #fbfcff; }
   .main-nav { display: flex; overflow-x: auto; gap: 5px; margin: 0; padding-bottom: 3px; }
   .nav-link { flex: 0 0 auto; min-height: 37px; padding: 8px 10px; font-size: 11px; }
   .nav-link > span { display: none; }
-  .sidebar-bottom { display: none; }
+  .sidebar-bottom { display: block; margin-top: 6px; }
+  .sidebar-note { display: none; }
+  .logout-button { width: 100%; min-height: 36px; padding: 7px 10px; text-align: center; font-size: 11px; }
   .main-column { width: 100%; margin-left: 0; }
   .topbar { position: static; height: auto; min-height: 60px; padding: 10px 16px; }
   .mobile-brand { display: flex; gap: 8px; align-items: center; font-size: 12px; }

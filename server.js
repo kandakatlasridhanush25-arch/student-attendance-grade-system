@@ -33,7 +33,7 @@ app.use(express.urlencoded({ extended: false, limit: '20kb' }));
 
 app.use(session({
   name: 'attendancePortal.sid',
-  secret: process.env.SESSION_SECRET || 'local-demo-secret-change-me-before-deployment',
+  secret: process.env.SESSION_SECRET || 'change-this-secret-before-deployment',
   resave: false,
   saveUninitialized: false,
   cookie: {
@@ -64,7 +64,7 @@ function publicRole(role) {
 }
 
 async function buildPublicUser(account) {
-  let name = 'Project Admin';
+  let name = 'Administrator';
   if (account.role === 'FACULTY') {
     const [rows] = await pool.execute('SELECT faculty_name AS name FROM faculty WHERE faculty_id = ?', [account.faculty_id]);
     name = rows[0]?.name || 'Faculty User';
@@ -107,7 +107,7 @@ app.post('/api/auth/login', loginLimiter, async (req, res, next) => {
     );
     const account = rows[0];
     if (!account || !(await bcrypt.compare(password, account.password_hash))) {
-      return res.status(401).json({ error: 'Login not recognised. Check your demo username and password.' });
+      return res.status(401).json({ error: 'Login not recognised. Check your username and password.' });
     }
 
     req.session.regenerate(async (sessionError) => {
@@ -399,7 +399,7 @@ app.use((error, _req, res, _next) => {
 async function main() {
   try {
     await pool.query('SELECT 1');
-    // Fail early with a helpful error if setup-demo.js has not been run yet.
+    // Fail early with a helpful error if account setup has not been run yet.
     await pool.query('SELECT account_id FROM website_accounts LIMIT 1');
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`\nStudent Attendance Portal is running on port ${PORT}`);
@@ -408,7 +408,7 @@ async function main() {
     console.error('\nThe portal could not start.');
     console.error('1. Make sure MySQL Server is running.');
     console.error('2. Check DB_PASSWORD and DB_NAME in your .env file.');
-    console.error('3. Run: npm run setup-demo');
+    console.error('3. Run the account setup script');
     console.error('Details:', error.message);
     await pool.end();
     process.exit(1);

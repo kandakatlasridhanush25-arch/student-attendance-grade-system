@@ -34,9 +34,9 @@ async function main() {
     }
 
     const accounts = [
-      { username: 'admin', password: process.env.DEMO_ADMIN_PASSWORD || 'admin123', role: 'ADMIN', studentId: null, facultyId: null },
-      { username: 'faculty', password: process.env.DEMO_FACULTY_PASSWORD || 'faculty123', role: 'FACULTY', studentId: null, facultyId: facultyRows[0].faculty_id },
-      { username: 'student', password: process.env.DEMO_STUDENT_PASSWORD || 'student123', role: 'STUDENT', studentId: studentRows[0].student_id, facultyId: null }
+      { username: 'admin', password: process.env.ADMIN_PASSWORD || process.env.DEMO_ADMIN_PASSWORD || 'admin123', role: 'ADMIN', studentId: null, facultyId: null },
+      { username: 'faculty', password: process.env.FACULTY_PASSWORD || process.env.DEMO_FACULTY_PASSWORD || 'faculty123', role: 'FACULTY', studentId: null, facultyId: facultyRows[0].faculty_id },
+      { username: 'student', password: process.env.STUDENT_PASSWORD || process.env.DEMO_STUDENT_PASSWORD || 'student123', role: 'STUDENT', studentId: studentRows[0].student_id, facultyId: null }
     ];
 
     for (const account of accounts) {
@@ -52,9 +52,9 @@ async function main() {
     }
 
     console.log('\nSetup complete. Website login accounts are ready.');
-    console.log('Admin: admin / admin123');
-    console.log('Faculty: faculty / faculty123');
-    console.log('Student: student / student123');
+    console.log('Admin account ready: admin');
+    console.log('Faculty account ready: faculty');
+    console.log('Student account ready: student');
     console.log('Your existing departments, students, attendance, marks, views and other project objects were not dropped or recreated.');
   } finally {
     connection.release();

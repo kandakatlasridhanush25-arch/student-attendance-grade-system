@@ -191,7 +191,7 @@ function gradesPage() {
   return `${pageHeader("Grades & results", "Student and subject-wise marks, percentages and grade bands.", "MySQL assessment results")}
     ${marksEntryPanel()}
     <section class="panel table-panel"><div class="panel-header"><div><h2>Grade report</h2><p>Calculated by the MySQL grade-report view.</p></div><input id="grade-search" class="search-input" type="search" placeholder="Search student or subject…" aria-label="Search grade reports"></div><div id="grades-table">${gradeTable(rows)}</div></section>
-    <div class="callout"><strong>Example:</strong> Aarav Reddy scored 52/60 (86.67%) in DBMS301 and receives grade A in this demo report.</div>`;
+    `;
 }
 function subjectsPage() {
   return `${pageHeader("Subjects", "Subjects retrieved from the connected MySQL database.", "6 subjects")}
@@ -209,7 +209,7 @@ function reportsPage() {
       <section class="report-card"><h2>Attendance summary CSV</h2><p>Includes student, roll number, subject, total classes, attended classes and attendance percentage.</p><button type="button" class="primary-button" id="export-attendance">Download attendance CSV</button></section>
       <section class="report-card"><h2>Grade report CSV</h2><p>Includes student, subject, total marks, maximum marks, percentage and grade.</p><button type="button" class="primary-button" id="export-grades">Download grade CSV</button></section>
       <section class="report-card"><h2>Students CSV</h2><p>Exports the student directory available in the current account.</p><button type="button" class="secondary-button" id="export-students">Download students CSV</button></section>
-      <section class="report-card"><h2>About this demo</h2><p>The portal reads records from MySQL through the Express backend. Admin and faculty accounts can record attendance and enter marks; student accounts are read-only.</p><button type="button" class="secondary-button" data-page="erd">View ER diagram</button></section>
+      <section class="report-card"><h2>About this system</h2><p>The portal reads live records from MySQL through the Express backend. Admin and faculty accounts can record attendance and enter marks; student accounts are read-only.</p><button type="button" class="secondary-button" data-page="erd">View ER diagram</button></section>
     </div>`;
 }
 const pageTitles = { overview: "Overview", students: "Students", attendance: "Attendance", grades: "Grades", subjects: "Subjects", erd: "ER Diagram", reports: "Reports / Export" };
@@ -302,15 +302,15 @@ function downloadCsv(filename, headers, rows) {
 }
 function exportAttendance() {
   const rows = allAttendanceRows().map((row) => [row.student.roll, row.student.name, row.subject.code, row.subject.name, row.total, row.attended, row.percentage.toFixed(2)]);
-  downloadCsv("attendance_summary_demo.csv", ["roll_no", "student_name", "subject_code", "subject_name", "total_classes", "attended_classes", "attendance_percentage"], rows);
+  downloadCsv("attendance_summary.csv", ["roll_no", "student_name", "subject_code", "subject_name", "total_classes", "attended_classes", "attendance_percentage"], rows);
 }
 function exportGrades() {
   const rows = visibleGrades().map((row) => { const student = studentById(row.studentId); const subject = subjectById(row.subjectId); return [student.roll, student.name, subject.code, subject.name, row.total.toFixed(2), row.max.toFixed(2), row.percentage.toFixed(2), row.grade]; });
-  downloadCsv("grade_report_demo.csv", ["roll_no", "student_name", "subject_code", "subject_name", "total_marks", "max_marks", "percentage", "grade"], rows);
+  downloadCsv("grade_report.csv", ["roll_no", "student_name", "subject_code", "subject_name", "total_marks", "max_marks", "percentage", "grade"], rows);
 }
 function exportStudents() {
   const rows = visibleStudents().map((student) => [student.roll, student.name, student.email, deptName(student.dept), student.semester, student.status]);
-  downloadCsv("students_demo.csv", ["roll_no", "full_name", "email", "department", "semester", "status"], rows);
+  downloadCsv("students.csv", ["roll_no", "full_name", "email", "department", "semester", "status"], rows);
 }
 function bindPageControls() {
   document.querySelectorAll("[data-page]").forEach((button) => {
@@ -375,12 +375,6 @@ document.getElementById("toggle-password").addEventListener("click", () => {
   button.textContent = showing ? "Show" : "Hide";
   button.setAttribute("aria-label", showing ? "Show password" : "Hide password");
   button.setAttribute("aria-pressed", String(!showing));
-});
-document.getElementById("fill-student").addEventListener("click", () => {
-  document.getElementById("username").value = "student";
-  document.getElementById("password").value = "student123";
-  loginError.textContent = "";
-  document.getElementById("username").focus();
 });
 document.getElementById("logout-button").addEventListener("click", logout);
 document.querySelectorAll(".nav-link").forEach((button) => button.addEventListener("click", () => renderPage(button.dataset.page, true)));

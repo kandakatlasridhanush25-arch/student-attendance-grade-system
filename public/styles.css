@@ -241,3 +241,6 @@ tbody tr:hover td { background: #fbfcff; }
 button:disabled { cursor: wait; opacity: .65; }
 @media (max-width: 1000px) { .entry-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .entry-grid { grid-template-columns: 1fr; } .entry-actions { align-items: flex-start; flex-direction: column; } }
+
+.login-note { margin-top: 22px; padding: 12px 14px; border-radius: 10px; background: #f8faff; border: 1px solid #dfe7f5; color: #526177; font-size: 12px; line-height: 1.5; }
+.login-note strong { color: var(--ink); }

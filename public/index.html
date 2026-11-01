@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A beginner-friendly demonstration portal for the Student Attendance and Grade Management System DBMS mini project.">
+  <meta name="description" content="Student Attendance and Grade Management System DBMS mini project portal.">
   <title>Student Attendance & Grade Management System</title>
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
@@ -26,7 +26,7 @@
         <div><span class="point-icon" aria-hidden="true">✓</span><span>Student-wise grade and subject reports</span></div>
         <div><span class="point-icon" aria-hidden="true">✓</span><span>Built around the MySQL DBMS mini project</span></div>
       </div>
-      <div class="intro-stats" aria-label="Sample project data">
+      <div class="intro-stats" aria-label="Project data">
         <div><strong>8</strong><span>Students</span></div>
         <div><strong>6</strong><span>Subjects</span></div>
         <div><strong>48</strong><span>Enrollments</span></div>
@@ -61,14 +61,7 @@
           <p id="login-error" class="form-message" role="alert" aria-live="polite"></p>
           <button type="submit" class="primary-button full-width">Sign in <span aria-hidden="true">→</span></button>
         </form>
-        <div class="demo-accounts">
-          <h3>Project demonstration accounts</h3>
-          <p><strong>Admin</strong> <code>admin</code> / <code>admin123</code></p>
-          <p><strong>Faculty</strong> <code>faculty</code> / <code>faculty123</code></p>
-          <p><strong>Student</strong> <code>student</code> / <code>student123</code></p>
-          <button type="button" class="text-button" id="fill-student">Fill student demo details</button>
-        </div>
-        <p class="demo-warning"><strong>Student project:</strong> login is checked by the Express backend and academic records are read from MySQL. Do not use real or reused passwords, and do not publish the demo credentials as a public production login.</p>
+        <p class="login-note"><strong>Authorized access:</strong> Sign in using the account credentials assigned for your role.</p>
       </div>
     </section>
   </main>
@@ -89,7 +82,7 @@
         <button type="button" class="nav-link" data-page="reports"><span aria-hidden="true">⇩</span> Reports / Export</button>
       </nav>
       <div class="sidebar-bottom">
-        <div class="sidebar-note"><span class="status-dot"></span><div><strong>Demo mode</strong><span>Sample project data</span></div></div>
+        <div class="sidebar-note"><span class="status-dot"></span><div><strong>Database online</strong><span>MySQL connected</span></div></div>
         <button id="logout-button" type="button" class="logout-button"><span aria-hidden="true">↪</span> Sign out</button>
       </div>
     </aside>
@@ -98,7 +91,7 @@
       <header class="topbar">
         <div class="mobile-brand"><div class="brand-mark tiny" aria-hidden="true">AG</div><strong>Academic Portal</strong></div>
         <div class="breadcrumb"><span>Portal</span><span aria-hidden="true">/</span><strong id="topbar-page">Overview</strong></div>
-        <div class="user-summary"><div class="avatar" id="user-avatar" aria-hidden="true">A</div><div><strong id="current-user-name">Admin</strong><span id="current-user-role">Administrator</span></div><span class="demo-pill">DEMO</span></div>
+        <div class="user-summary"><div class="avatar" id="user-avatar" aria-hidden="true">A</div><div><strong id="current-user-name">Administrator</strong><span id="current-user-role">Administrator</span></div></div>
       </header>
       <main id="main-content" class="page-content" tabindex="-1">
         <div id="page-view"></div>
@@ -107,6 +100,6 @@
     </div>
   </div>
 
-  <noscript><p class="noscript-message">Please enable JavaScript to use this local demo portal.</p></noscript>
+  <noscript><p class="noscript-message">Please enable JavaScript to use this portal.</p></noscript>
 </body>
 </html>
